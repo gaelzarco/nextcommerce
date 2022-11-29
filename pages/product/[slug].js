@@ -20,7 +20,8 @@ export default function ProductDetails({ product, products }) {
                     </div>
                     <div className="small-images-caintainer">
                         {image?.map((item, i) => {
-                            <img 
+                            <img
+                                key={i} 
                                 src={urlFor(item)}
                                 className={i === index ? 'small-image selected-image' : 'small-image'}
                                 onMouseEnter={() => setIndex(i)}
@@ -51,7 +52,7 @@ export default function ProductDetails({ product, products }) {
                             <span className='minus' onClick={decQty}>
                                 <AiOutlineMinus />
                             </span>
-                            <span className='num' onClick=''>
+                            <span className='num'>
                                 {qty}
                             </span>
                             <span className='plus' onClick={incQty}>
