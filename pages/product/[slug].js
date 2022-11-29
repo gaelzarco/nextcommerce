@@ -4,12 +4,19 @@ import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar} from 'react-i
 import { Product } from '../../components'
 import { client, urlFor } from '../../lib/client'
 import { useStateContext } from '../../context/StateConext'
+import { BsLayoutTextWindow } from 'react-icons/bs'
 
 
 export default function ProductDetails({ product, products }) {
     const { image, name, details, price } = product
     const [ index, setIndex ] = useState(0)
-    const { decQty, incQty, qty, onAdd } = useStateContext()
+    const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext()
+
+    const handleBuyNow = () => {
+        onAdd(product, qty)
+
+        setShowCart(true)
+    }
 
     return (
         <div>
@@ -62,7 +69,7 @@ export default function ProductDetails({ product, products }) {
                     </div>
                     <div className='buttons'>
                         <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add To Cart</button>
-                        <button type="button" className="buy-now" onClick="">Buy Now</button>
+                        <button type="button" className="buy-now" onClick={() => handleBuyNow()}>Buy Now</button>
                     </div>
                 </div>
             </div>
